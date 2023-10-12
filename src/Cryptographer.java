@@ -33,7 +33,6 @@ public class Cryptographer {
         return message;
     }
     public static String encoder(char[] alphabet, String message, int key) {
-        message = "a";
         // Turning message into array of chars
         char[] messageLetters = message.toCharArray();
 
