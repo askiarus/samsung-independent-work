@@ -1,3 +1,5 @@
+// This cryptographer supports only lowercase letters of English alphabet! Every other symbol will remain unchanged!
+
 import java.util.Scanner;
 
 public class Cryptographer {
@@ -5,14 +7,17 @@ public class Cryptographer {
         Scanner input = new Scanner(System.in);
 
         char[] alphabet = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+        System.out.print("Enter your message (replace spaces with _): ");
         char[] message = input.next().toCharArray();
         //String message = input.next();
+        System.out.print("Enter the cipher key: ");
         int key = input.nextInt();
 
-        // Encode message
+        // Encode message (assigning is necessary for String)
         message = encoder(alphabet, message, key);
         System.out.println(message);
-        // Decode message
+        // Decode message (assigning is necessary for String)
         message = decoder(alphabet, message, key);
         System.out.println(message);
     }
@@ -23,7 +28,7 @@ public class Cryptographer {
                 // Checking every letter in alphabet if it matches the letter in the message
                 if (message[i] == alphabet[j]) {
                     // Leaving only the number in range of the length of the alphabet that gives us position of the letter that replaces the one in message
-                    message[i] = alphabet[(j + key) % alphabet.length];
+                    message[i] = alphabet[(j + alphabet.length + key) % alphabet.length];
                     // Returning to parent loop to prevent double encoding of a single letter
                     break;
                 }
@@ -41,7 +46,7 @@ public class Cryptographer {
                 // Checking every letter in alphabet if it matches the letter in the message
                 if (messageLetters[i] == alphabet[j]) {
                     // Leaving only the number in range of the length of the alphabet that gives us position of the letter that replaces the one in message
-                    messageLetters[i] = alphabet[(j + key) % alphabet.length];
+                    messageLetters[i] = alphabet[(j + alphabet.length + key) % alphabet.length];
                     // Returning to parent loop to prevent double encoding of a single letter
                     break;
                 }
@@ -49,17 +54,13 @@ public class Cryptographer {
         }
 
         // Turning the array back into a message
-        message = "";
-        for (char messageLetter : messageLetters) {
-            message += messageLetter;
-        }
-        return message;
+        return new String(messageLetters);
     }
 
     public static char[] decoder(char[] alphabet, char[] message, int key) {
-        return encoder(alphabet, message, alphabet.length - key);
+        return encoder(alphabet, message, -key);
     }
     public static String decoder(char[] alphabet, String message, int key) {
-        return encoder(alphabet, message, alphabet.length - key);
+        return encoder(alphabet, message, -key);
     }
 }
