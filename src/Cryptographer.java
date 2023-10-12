@@ -57,9 +57,9 @@ public class Cryptographer {
     }
 
     public static char[] decoder(char[] alphabet, char[] message, int key) {
-        return encoder(alphabet, message, -key);
+        return encoder(alphabet, message, alphabet.length - key);
     }
     public static String decoder(char[] alphabet, String message, int key) {
-        return encoder(alphabet, message, -key);
+        return encoder(alphabet, message, alphabet.length - key);
     }
 }
