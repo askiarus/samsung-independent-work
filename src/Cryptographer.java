@@ -9,8 +9,8 @@ public class Cryptographer {
         char[] alphabet = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
         System.out.print("Enter your message (replace spaces with _): ");
-        //char[] message = input.next().toCharArray();
-        String message = input.next();
+        char[] message = input.next().toCharArray();
+        //String message = input.next();
         System.out.print("Enter the cipher key: ");
         int key = input.nextInt();
 
