@@ -14,10 +14,8 @@ public class Cryptographer {
         System.out.print("Enter the cipher key: ");
         int key = input.nextInt();
 
-        // Encode message (assigning is necessary for String)
-        message = encoder(alphabet, message, key);
+        message = encoder(alphabet, message, key); // Assigning is necessary for String
         System.out.println(message);
-        // Decode message (assigning is necessary for String)
         message = decoder(alphabet, message, key);
         System.out.println(message);
     }
@@ -25,7 +23,6 @@ public class Cryptographer {
     public static char[] encoder(char[] alphabet, char[] message, int key) {
         for (int i = 0; i < message.length; i++) {
             for (int j = 0; j < alphabet.length; j++) {
-                // Checking every letter in alphabet if it matches the letter in the message
                 if (message[i] == alphabet[j]) {
                     // Leaving only the number in range of the length of the alphabet that gives us position of the letter that replaces the one in message
                     message[i] = alphabet[(j + alphabet.length + key) % alphabet.length];
@@ -38,10 +35,8 @@ public class Cryptographer {
         return message;
     }
     public static String encoder(char[] alphabet, String message, int key) {
-        // Turning message into array of chars
         char[] messageLetters = message.toCharArray();
 
-        // Calculating the cipher and turning the array back into a message
         return new String(encoder(alphabet, messageLetters, key));
     }
 
