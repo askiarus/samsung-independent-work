@@ -9,8 +9,8 @@ public class Cryptographer {
         char[] alphabet = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
         System.out.print("Enter your message (replace spaces with _): ");
-        char[] message = input.next().toCharArray();
-        //String message = input.next();
+        //char[] message = input.next().toCharArray();
+        String message = input.next();
         System.out.print("Enter the cipher key: ");
         int key = input.nextInt();
 
@@ -41,20 +41,8 @@ public class Cryptographer {
         // Turning message into array of chars
         char[] messageLetters = message.toCharArray();
 
-        for (int i = 0; i < messageLetters.length; i++) {
-            for (int j = 0; j < alphabet.length; j++) {
-                // Checking every letter in alphabet if it matches the letter in the message
-                if (messageLetters[i] == alphabet[j]) {
-                    // Leaving only the number in range of the length of the alphabet that gives us position of the letter that replaces the one in message
-                    messageLetters[i] = alphabet[(j + alphabet.length + key) % alphabet.length];
-                    // Returning to parent loop to prevent double encoding of a single letter
-                    break;
-                }
-            }
-        }
-
-        // Turning the array back into a message
-        return new String(messageLetters);
+        // Calculating the cipher and turning the array back into a message
+        return new String(encoder(alphabet, messageLetters, key));
     }
 
     public static char[] decoder(char[] alphabet, char[] message, int key) {
